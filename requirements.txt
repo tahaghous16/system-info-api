@@ -1,0 +1,232 @@
+# Linux Command Executor API - Simple Explanation
+
+## Step 1 — Create Project Folder
+
+First create a project folder.
+
+Example:
+
+linux-command-executor/
+
+Inside this folder we will create all project files.
+
+---
+
+## Step 2 — Install Required Packages
+
+Install FastAPI and Uvicorn.
+
+Command:
+
+pip install fastapi uvicorn
+
+FastAPI is used to create APIs.
+
+Uvicorn is used to run the FastAPI server.
+
+---
+
+## Step 3 — Create requirements.txt
+
+Create a file named:
+
+requirements.txt
+
+Add:
+
+fastapi==0.116.1
+uvicorn==0.35.0
+
+This file stores project dependencies.
+
+Anyone can install required packages using:
+
+pip install -r requirements.txt
+
+---
+
+## Step 4 — Create Folder Structure
+
+Project structure:
+
+project/
+│
+├── main.py
+├── routes/
+├── utils/
+├── requirements.txt
+└── README.md
+
+Explanation:
+
+main.py
+→ Main FastAPI application.
+
+routes/
+→ Contains API routes/endpoints.
+
+utils/
+→ Contains helper functions.
+
+README.md
+→ Project documentation.
+
+---
+
+## Step 5 — Create command_executor.py
+
+Location:
+
+utils/command_executor.py
+
+Purpose:
+
+This file executes Linux commands using Python subprocess module.
+
+It runs commands like:
+
+* uptime
+* df -h
+* free -m
+* whoami
+
+and returns output in JSON format.
+
+---
+
+## Step 6 — Create system_routes.py
+
+Location:
+
+routes/system_routes.py
+
+Purpose:
+
+This file contains API endpoints.
+
+Examples:
+
+/system/uptime
+/system/disk
+/system/memory
+/system/user
+
+When user accesses these APIs, Linux commands execute internally.
+
+Example:
+
+/system/user
+
+runs:
+
+whoami
+
+---
+
+## Step 7 — Create main.py
+
+Purpose:
+
+This is the main entry point of the FastAPI application.
+
+It:
+
+* Creates FastAPI app
+* Includes routes
+* Creates health endpoint
+
+Health endpoint:
+
+/health
+
+Response:
+
+{
+"status": "healthy"
+}
+
+---
+
+## Step 8 — Run the Server
+
+Command:
+
+uvicorn main:app --reload
+
+Explanation:
+
+uvicorn
+→ Server runner
+
+main
+→ main.py file
+
+app
+→ FastAPI app variable
+
+--reload
+→ Automatically reloads server after code changes
+
+---
+
+## Step 9 — Test APIs
+
+Open browser:
+
+http://127.0.0.1:8000/docs
+
+FastAPI automatically provides Swagger API documentation.
+
+You can test all APIs from browser.
+
+---
+
+## Step 10 — Example API Flow
+
+User requests:
+
+/system/uptime
+
+FastAPI receives request.
+
+Python subprocess runs:
+
+uptime
+
+Linux returns system uptime information.
+
+FastAPI converts output into JSON response.
+
+---
+
+## Step 11 — Security
+
+Users are NOT allowed to execute custom commands.
+
+Only predefined commands are allowed for security reasons.
+
+This prevents command injection attacks.
+
+---
+
+## Step 12 — Technologies Used
+
+* Python
+* FastAPI
+* Uvicorn
+* Linux Commands
+* Git
+* GitHub
+
+---
+
+## Step 13 — What I Learned
+
+* FastAPI basics
+* API development
+* Linux commands
+* subprocess module
+* JSON responses
+* Error handling
+* Project structure
+* GitHub workflow
